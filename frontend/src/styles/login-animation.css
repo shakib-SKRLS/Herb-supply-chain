@@ -1,0 +1,206 @@
+/* Login Animation Styles */
+.login-animation-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Herb Particles */
+.herb-particle {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.6;
+  z-index: 1;
+  animation: float 15s linear infinite, fade 15s ease-in-out infinite;
+}
+
+.herb-1 {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2348bb78'%3E%3Cpath d='M12 2C7.03 2 3 6.03 3 11c0 2.72 1.22 5.17 3.15 6.82L12 22l5.85-4.18C19.78 16.17 21 13.72 21 11c0-4.97-4.03-9-9-9zm0 16.54L7.26 14.5C5.84 13.34 5 11.75 5 10c0-3.87 3.13-7 7-7s7 3.13 7 7c0 1.75-.84 3.34-2.26 4.5L12 18.54z'/%3E%3C/svg%3E");
+}
+
+.herb-2 {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2338a169'%3E%3Cpath d='M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66l.95-2.3c.48.17.98.3 1.5.3C12 20 17 16 17 8zm-6 8.75c-2.34 0-4.29-.73-4.29-1.67c0-.94 1.95-1.67 4.29-1.67s4.29.73 4.29 1.67c0 .94-1.95 1.67-4.29 1.67zm0-3.08c-2.6 0-4.71-.81-4.71-1.81c0-1 2.11-1.81 4.71-1.81c2.6 0 4.71.81 4.71 1.81c0 1-2.11 1.81-4.71 1.81z'/%3E%3C/svg%3E");
+}
+
+.herb-3 {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232f855a'%3E%3Cpath d='M12 22c4.56 0 8.33-3.4 8.92-7.8c.09-.64-.48-1.21-1.12-1.12c-4.4.59-7.8 4.36-7.8 8.92c0 0-1.68 0-1.68-10.02c0-1.68 1.68-2.8 3.34-2.8c1.68 0 3.36 1.12 3.36 2.8c0 1.68-1.68 2.8-3.36 2.8c-.84 0-1.68-.56-1.68-1.4c0-.84.84-1.4 1.68-1.4c.84 0 .84.56.84.56s0-.56-.84-.56c-.84 0-1.68.56-1.68 1.4c0 .84.84 1.4 1.68 1.4c1.68 0 3.36-1.12 3.36-2.8c0-1.68-1.68-2.8-3.36-2.8c-1.66 0-3.34 1.12-3.34 2.8c0 10.02 1.68 10.02 1.68 10.02z'/%3E%3C/svg%3E");
+}
+
+/* Blockchain Cube */
+.blockchain-cube {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234299e1'%3E%3Cpath d='M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12v5.7c0 4.83-3.4 9.19-7 10.36c-3.6-1.17-7-5.53-7-10.36v-5.7l7-3.12z'/%3E%3Cpath fill-opacity='0.5' d='M12 3L6 6v6c0 3.31 2.69 6 6 6s6-2.69 6-6V6l-6-3z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.7;
+  z-index: 1;
+  animation: float 20s linear infinite, rotate 20s linear infinite, fade 20s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-100px) translateX(50px);
+  }
+  50% {
+    transform: translateY(-50px) translateX(100px);
+  }
+  75% {
+    transform: translateY(50px) translateX(25px);
+  }
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+}
+
+@keyframes fade {
+  0%, 100% {
+    opacity: 0;
+  }
+  25%, 75% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Login Side Image */
+.login-side-image {
+  height: 100%;
+  background: linear-gradient(135deg, #4a5568 0%, #1a202c 100%);
+  border-radius: 10px 0 0 10px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-side-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23ffffff' fill-opacity='0.05' d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z'%3E%3C/path%3E%3C/svg%3E");
+  opacity: 0.3;
+}
+
+.login-side-content {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+  color: white;
+  text-align: center;
+}
+
+.login-side-content h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #68d391 0%, #38b2ac 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: pulse 2s infinite;
+}
+
+.login-side-content p {
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+.login-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.login-feature {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+  transition: all 0.3s ease;
+}
+
+.login-feature:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+}
+
+.login-feature svg {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #68d391;
+}
+
+.login-feature h4 {
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.login-feature p {
+  font-size: 0.8rem;
+  margin-bottom: 0;
+  opacity: 0.7;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+  .login-animation-container {
+    display: none;
+  }
+}
+
+/* Enhanced auth card */
+.auth-card {
+  overflow: hidden;
+  border: none;
+  box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+  border-radius: 10px;
+  animation: cardAppear 0.5s ease-out;
+}
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
