@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "Blockchain-based herb traceability system with QR code verification for lab results",
   "keywords": ["herb", "traceability", "blockchain", "qr-code", "lab-results", "react", "web3"],
-  "author": "Your Name",
+  "author": "Shakib Khan",
   "license": "MIT",
   "homepage": ".",
   "repository": {
     "type": "git",
-    "url": "https://github.com/YOUR_USERNAME/herb-traceability-system.git"
+    "url": "https://github.com/shakib-SKRLS/Herb-supply-chain.git"
   },
   "private": true,
   "dependencies": {
