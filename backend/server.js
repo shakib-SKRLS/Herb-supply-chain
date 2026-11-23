@@ -62,20 +62,10 @@ app.get('/api/health', async (req, res) => {
     const available = await Herb.countDocuments({ status: { $in: ['processed', 'shipped'] }, quantity: { $gt: 0 } });
     res.json({ success: true, status: 'ok', env: process.env.NODE_ENV || 'development', db: mongoose.connection.name, counts: { total, available } });
   } catch (e) {
-    res.json({ success: true, status: 'ok', env: process.env.NODE_ENV || 'development', error: e.message });
+    res.status(503).json({ success: false, status: 'degraded', env: process.env.NODE_ENV || 'development', db: mongoose.connection.name, error: e.message });
   }
 });
 
-// Temporary debug endpoint to inspect what herbs exist (remove in production)
-app.get('/api/debug/herbs', async (req, res) => {
-  try {
-    const herbs = await Herb.find().select('name status quantity batchNumber createdAt');
-    const available = await Herb.find({ status: { $in: ['processed', 'shipped'] }, quantity: { $gt: 0 } }).select('name status quantity');
-    res.json({ success: true, total: herbs.length, available: available.length, herbs, availableHerbs: available });
-  } catch (e) {
-    res.status(500).json({ success: false, error: e.message });
-  }
-});
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/herbs', herbRoutes);
