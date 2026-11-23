@@ -78,7 +78,7 @@ exports.createOrder = asyncHandler(async (req, res) => {
     const addr = order.shippingAddress || {};
     const firstItem = Array.isArray(order.items) && order.items[0] ? order.items[0] : null;
     let herbName = '';
-    let farmerPhone = process.env.FARMER_PHONE || '+917668588806';
+    let farmerPhone = process.env.FARMER_PHONE;
     if (firstItem) {
       const herbDoc = await Herb.findById(firstItem.herb).lean();
       herbName = herbDoc?.name || '';
@@ -88,7 +88,11 @@ exports.createOrder = asyncHandler(async (req, res) => {
     }
     const qty = firstItem ? firstItem.quantity : undefined;
     const msg = `New herb order: ${herbName ? herbName + ' - ' : ''}Qty ${qty || '?'} | Address: ${addr.address || ''}, ${addr.city || ''}, ${addr.postalCode || ''}, ${addr.country || ''}. Order #${order.orderNumber}`;
-    await sendTextBeeSms({ phone: farmerPhone, message: msg });
+    if (farmerPhone) {
+      await sendTextBeeSms({ phone: farmerPhone, message: msg });
+    } else {
+      console.warn('SMS skipped: no farmer phone (set FARMER_PHONE or herb.processor.farmerPhone)');
+    }
   } catch (e) {
     console.error('Error preparing SMS:', e.message);
   }
