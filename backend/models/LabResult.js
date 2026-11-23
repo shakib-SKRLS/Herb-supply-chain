@@ -84,7 +84,8 @@ LabResultSchema.pre('save', function(next) {
 // Update herb status based on lab results
 LabResultSchema.post('save', async function() {
   const herb = await mongoose.model('Herb').findById(this.herb);
-  
+  if (!herb) return;
+
   if (this.status === 'passed') {
     herb.status = 'approved';
   } else if (this.status === 'failed') {
