@@ -40,10 +40,19 @@ async function seed() {
   await clear();
 
   // Users (use create to trigger pre-save hooks)
-  const admin = await User.create({ name: 'Admin User', email: process.env.DEFAULT_ADMIN_EMAIL || 'admin@herbtrace.com', password: process.env.DEFAULT_ADMIN_PASSWORD || 'admin123', role: 'admin' });
-  const lab = await User.create({ name: 'Lab Testing Inc.', email: 'lab@example.com', password: 'password', role: 'lab' });
-  const processor = await User.create({ name: 'Herb Processing Co.', email: 'processor@example.com', password: 'password', role: 'processor' });
-  const consumer = await User.create({ name: 'John Consumer', email: 'consumer@example.com', password: 'password', role: 'consumer' });
+  // Never fall back to a hardcoded password: the seeded admin is a real
+  // privileged account. Demo users get a generated password, printed below.
+  const adminPassword = process.env.DEFAULT_ADMIN_PASSWORD;
+  if (!adminPassword) {
+    console.error('Refusing to seed: set DEFAULT_ADMIN_PASSWORD in backend/.env (see backend/.env.example)');
+    process.exit(1);
+  }
+  const demoPassword = process.env.SEED_DEMO_PASSWORD || require('crypto').randomUUID();
+  const admin = await User.create({ name: 'Admin User', email: process.env.DEFAULT_ADMIN_EMAIL || 'admin@herbtrace.com', password: adminPassword, role: 'admin' });
+  const lab = await User.create({ name: 'Lab Testing Inc.', email: 'lab@example.com', password: demoPassword, role: 'lab' });
+  const processor = await User.create({ name: 'Herb Processing Co.', email: 'processor@example.com', password: demoPassword, role: 'processor' });
+  const consumer = await User.create({ name: 'John Consumer', email: 'consumer@example.com', password: demoPassword, role: 'consumer' });
+  console.log('Seeded demo password (lab/processor/consumer):', demoPassword);
 
   // Herbs
   const herb1 = await Herb.create({
@@ -68,7 +77,7 @@ async function seed() {
       farmerId: 'FARM-ABC-001',
       farmerName: 'ABC',
       farmerLocation: 'Nashik, MH',
-      farmerPhone: '+917668588806',
+      farmerPhone: process.env.SEED_FARMER_PHONE || '',
       harvestId: 'HARV-TUR-001',
       digitalSignature: 'SIG-PROC-001',
       processingDate: new Date('2025-06-10'),
