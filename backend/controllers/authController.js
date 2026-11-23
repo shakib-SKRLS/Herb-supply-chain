@@ -26,12 +26,14 @@ exports.register = asyncHandler(async (req, res, next) => {
   if (!errors.isEmpty()) {
     return next(new ErrorResponse(errors.array().map(e => e.msg).join(', '), 400));
   }
-  const { name, email, password, role } = req.body;
+  const { name, email, password } = req.body;
 
   const existing = await User.findOne({ email });
   if (existing) return next(new ErrorResponse('Email already registered', 400));
 
-  const user = await User.create({ name, email, password, role: role || 'user' });
+  // Roles are assigned by an admin (POST /api/users); never trust a
+  // client-supplied role on public registration.
+  const user = await User.create({ name, email, password, role: 'consumer' });
   sendTokenResponse(user, 201, res);
 });
 
